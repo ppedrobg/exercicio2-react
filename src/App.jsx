@@ -1,32 +1,27 @@
-import Cabecalho from './components/cabecalho/cabecalho'
-import Rodape from './components/rodape/rodape'
-import Secao from './components/secao/secao'
-
-
+import reactLogo from "./assets/react.svg";
+import Cabecalho from "./components/Cabecalho";
+import Conteudo from "./components/Conteudo";
+import Rodape from "./components/rodape";
 
 export default function App() {
+  
+  //ÁREA DECLARATIVA
 
-
-  // ÁREA DECLARATIVA
-
+  let reactLogoTextoAlt = "Logo do React";
 
   return (
     <>
-      { /*ÁREA IMPERATIVA*/}
-
+      {/* Área imperativa! */}
       <div>
-        { /*ÁREA IMPERATIVA*/}
+        {/* Um cabeçalho com um header, um h1, uma lista ul com 3 itens com 3 links. */}
+      <Cabecalho/>
+        {/* Uma seção com uma div com 3 parágrafos, com 3 linhas de lorem, uma imagem */}
 
-        { /* Um cabeçalho com header, um h1, uma lista ul com 3 itens com links*/}
-        <Cabecalho/>
-        { /* Uma seção com div com 3 parágrafos, com 3 linhas de lorem,
-        uma imagem*/}
-       <Secao/>
-
-        { /* Um rodapé com uma div, uma lista ul com 3 itens e 
-        links para rede sociais*/}
+      <Conteudo reactLogoProps={reactLogo} reactLogoTextoAltProps={reactLogoTextoAlt} />
+        
+        {/* Um rodapé com uma div, uma lista ul com 3 itens e links para redes sociais */}
         <Rodape/>
-          
+
       </div>
     </>
   )
