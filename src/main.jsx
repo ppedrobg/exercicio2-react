@@ -1,22 +1,22 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
-import './index.css'
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './routes/Home.jsx';
-import Produtos from './routes/Produto.jsx';
-import EditarProdutos from './routes/EditarProduto.jsx';
+import Produto from './routes/Produto.jsx';
+import EditarProduto from './routes/EditarProduto.jsx';
 import Error from './routes/Error.jsx';
+import ExcluirProdutos from './routes/ExcluirProdutos.jsx';
 
 const router = createBrowserRouter([
   {path: "/" , element: <App/>, errorElement: <Error/>,
     children:[
       {path: "/" , element: <Home/>},
-      {path: "/produtos" , element: <Produtos/>},
-      {path: "/editar/produtos/:id" , element: <EditarProdutos/>},
-    ]
-  }
+      {path: "/produto" , element: <Produto/>},
+      {path: "/editar/produto/:id" , element: <EditarProduto/>},
+      {path: "/excluir/produtos/:id" , element: <ExcluirProdutos/>},
+    ]}
 ])
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -24,3 +24,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <RouterProvider router={router}/>
   </React.StrictMode>,
 )
+
