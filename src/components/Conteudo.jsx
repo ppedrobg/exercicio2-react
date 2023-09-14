@@ -24,7 +24,7 @@ export default function Conteudo(props) {
             sunt, itaque odit. Facilis magnam eius sapiente illo reiciendis
             quisquam saepe nisi at?
           </p>
-          <img src={props.reactLogoProps} alt={props.reactLogoTextoAltProps} />
+          
         </div>
       </section>
     </>
