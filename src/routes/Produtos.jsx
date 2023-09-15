@@ -1,45 +1,77 @@
-import { Link } from "react-router-dom";
 import { ListaProdutos } from "../components/ListaProdutos";
-import {AiFillEdit as EditObj} from "react-icons/ai";
-import {RiDeleteBin2Fill as DelObj} from "react-icons/ri";
-import style from "./Produtos.module.css";
+import { Link } from "react-router-dom";
+import {AiFillEdit as Editar, AiOutlineDelete as Excluir} from "react-icons/ai";
+import classes from "./Produtos.module.css";
+import { useEffect, useState } from "react";
 
 export default function Produtos() {
-  return (
-      <>
-          <h1>Produtos Informáticos - FIAPO</h1>
 
-          <table className={style.tableStyle} >
-              <thead>
-                <tr className={style.tableHeaderStyle}>
-                  <th className={style.tableHeaderStyle}>ID</th>
-                  <th className={style.tableHeaderStyle}>NOME</th>
-                  <th className={style.tableHeaderStyle}>DESCRIÇÃO</th>
-                  <th className={style.tableHeaderStyle}>PREÇO</th>
-                  <th className={style.tableHeaderStyle}>Editar/Excluir</th>
+    document.title = "Lista de Produtos";
+
+    const [exemplo, setExemplo] = useState([{}]);
+
+    const [count, setCount] = useState(0);
+
+    useEffect(()=>{
+      console.log("Use-Effect que será sempre renderizado!");
+    });
+
+    useEffect(()=>{
+      console.log("Use-Effect que será renderizado apenas 1 vez!");
+
+        setExemplo(ListaProdutos);
+
+    },[]);
+
+    useEffect(()=>{
+      console.log("Use-Effect que será renderizado o objeto ou componente ou elemento que está no array de depenências sofrer atualização.");
+    },[count]);
+
+
+
+
+    return (
+      <div>
+          <h1>LISTA DE PRODUTOS</h1>
+
+
+        <div>
+          <button onClick={()=> setCount(count + 1)}>COUNTER - {count}</button>
+        </div>
+
+        <div>
+          <table className={classes.tableStyle}>
+            <thead>
+              <tr className={classes.tableHeaderStyle}>
+                <th className={classes.tableHeaderStyle}>ID</th>
+                <th className={classes.tableHeaderStyle}>Nome</th>
+                <th className={classes.tableHeaderStyle}>Descrição</th>
+                <th className={classes.tableHeaderStyle}>Preço</th>
+                <th className={classes.tableHeaderStyle}>Imagem</th>
+                <th className={classes.tableHeaderStyle}>Editar/Excluir</th>
                 </tr>
-              </thead>
-
-              <tbody>
-                {ListaProdutos.map((produto,indice)=>(
-                    <tr key={indice} className={style.tableLineStyle}>
-                      <td className={style.tableDataStyle}>{produto.id}</td>
-                      <td className={style.tableDataStyle}>{produto.nome}</td>
-                      <td className={style.tableDataStyle}>{produto.desc}</td>
-                      <td className={style.tableDataStyle}>{produto.preco}</td>
-                      <td className={style.tableDataStyle}><Link to={`/editar/produtos/${produto.id}`}><EditObj/></Link> | <Link to={`/excluir/produtos/${produto.id}`}><DelObj/></Link></td>
-                    </tr>
-                ))}
-              </tbody>
-
-              <tfoot>
-                <tr>
-                  <td colSpan={5} style={{textAlign:"center"}}>Total Produtos: {ListaProdutos.length}</td>
+            </thead>
+            <tbody>
+              {exemplo.map((produto, index) => (
+                <tr key={index} className={classes.tableLineStyle}>
+                  <td className={classes.tableDataStyle}>{produto.id}</td>
+                  <td className={classes.tableDataStyle}>{produto.nome}</td>
+                  <td className={classes.tableDataStyle}>{produto.desc}</td>
+                  <td className={classes.tableDataStyle}>{produto.preco}</td>
+                  <td className={classes.tableDataStyle}><img src={produto.img} alt={produto.desc} /></td>
+                  <td className={classes.tableDataStyle}><Link to={`/editar/produtos/${produto.id}`}><Editar/></Link> | <Link to={`/excluir/produtos/${produto.id}`}><Excluir/></Link></td>
                 </tr>
-              </tfoot>
+              ))} 
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colSpan="5" className={classes.tableDataStyle}>Total de Produtos: {ListaProdutos.length}</td>
+              </tr>
+            </tfoot>
           </table>
+        </div>
 
-      </>
+      </div>
     )
   }
   
