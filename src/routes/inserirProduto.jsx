@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function inserirProduto() {
+export default function InserirProduto() {
   document.title = "CADASTRAR";
 
   const navigate = useNavigate();
@@ -21,8 +21,9 @@ export default function inserirProduto() {
       })
       .catch((error) => console.log(error));
 
-    novoId = listaLocalProdutos[listaLocalProdutos.length - 1].id + 1;
   }, []);
+
+  novoId = listaLocalProdutos[listaLocalProdutos.length - 1].id + 1;
 
   const [produto, setProduto] = useState({
     id: novoId,
